@@ -1,10 +1,14 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Depends
+from pydantic import BaseModel
+from typing import List, Annotated
+
 app = FastAPI()
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+class ChoiceBase(BaseModel):
+    choice_text: str
+    is_correct: bool
 
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+class QuestionBase(BaseModel):
+    question_text: str
+    choices: List[ChoiceBase]
+
