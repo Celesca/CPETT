@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: cpett-container  # Set your desired custom name here
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: cpett
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - cpett-network
+
+volumes:
+  db-data:
+
+networks:
+  cpett-network:
+    driver: bridge
