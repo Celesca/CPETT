@@ -12,6 +12,11 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
 });
 
+app.get('/subject/:id', (req: Request, res: Response) => {
+  const { id } = req.params;
+  res.send(`Subject ID: ${id}`);
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
